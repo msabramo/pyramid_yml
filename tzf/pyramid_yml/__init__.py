@@ -182,8 +182,8 @@ def _run_includemes(configurator, includemes):
     :param dict includemes: include, a list of includes or dictionary
     """
     for include in includemes:
-        if includemes[include]:
-            try:
+        try:
+            if includemes[include]:
                 configurator.include(include, includemes[include])
-            except AttributeError:
-                configurator.include(include)
+        except (AttributeError, TypeError):
+            configurator.include(include)
